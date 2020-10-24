@@ -8,6 +8,10 @@ import ReduxHooks from "./pages/ReduxHooks";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import rootReducer from "./reducers/rootReducer";
+import UserRef from "./pages/UserRef";
+import Concurrency from "./pages/Concurrency";
+import LazyLoadAsync from "./pages/LazyLoadAsync";
+import TestWithJest from "./pages/JestTesting";
 
 let User = ({match}) => {
     return <h4>Logged In: {match.params.userName}</h4>
@@ -16,24 +20,46 @@ let User = ({match}) => {
 const store = createStore(rootReducer);
 
 class App extends Component {
-    constructor() {
-        super();
-        this.state = {
-            pageName: "Home"
-        }
-    }
-
     render() {
 
         return (
             <Provider store={store}>
-                <Router>
-                    <div className="App-header">
-                        <h1>React Basic Concepts: {this.state.pageName} </h1>
-                        <Link to={"/reactRouter"}>React Router Example</Link>
-                        <Link to={"/useState"}>useState Example</Link>
-                        <NavLink to={"/useMemo"} activeStyle={{color : 'green'}}>useMemo Example</NavLink>
-                        <Link to={"/reduxHooks"}>react redux hooks Example</Link>
+
+                <div className="App-header">
+                    <h3 style={{textDecoration: 'underline'}}>React New Features</h3>
+                    <Router>
+                        <ol>
+                            <li>ReactRouter
+                                <ul>
+                                    <li><Link to={"/reactRouter"}>React Router Example</Link></li>
+                                </ul>
+                            </li>
+                            
+                            <li>React Hooks
+                                <ul>
+                                    <li><Link to={"/useState"}>useState Example</Link></li>
+                                    <li><NavLink to={"/useMemo"} activeStyle={{color: 'green'}}>useMemo Example</NavLink></li>
+                                    <li><Link to={"/reduxHooks"}>react redux hooks Example</Link></li>
+                                    <li><Link to={"/useRef"}>useRef / useEffect examples</Link></li>
+                                </ul>
+                            </li>
+                            
+                            <li>React Concurrency Control
+                                <ul>
+                                    <li><Link to={"/concurrency"}> Component Lazy Loading </Link></li>
+                                    <li><Link to={"/azycLazyLoading"}> Data Lazy Loading </Link></li>
+                                </ul>
+                            </li>
+
+                            <li>React Unit Testing
+                                <ul>
+                                    <li><Link to={"/jest"}> Unit testing with JEST </Link></li>
+                                </ul>
+                            </li>
+                        </ol>
+
+
+                        <hr className="single-article"/>
 
                         <Route path="/reactRouter" exact strict component={ReactRouter}/>
                         <Route path="/logged/:userName" exact strict component={User}/>
@@ -45,9 +71,13 @@ class App extends Component {
                         }/>
                         <Route path="/useMemo" exact strict component={UseMemo}/>
                         <Route path="/reduxHooks" exact strict component={ReduxHooks}/>
+                        <Route path="/useRef" exact strict component={UserRef}/>
+                        <Route path="/concurrency" exact strict component={Concurrency}></Route>
+                        <Route path="/azycLazyLoading" exact strict component={LazyLoadAsync}></Route>
+                        <Route path="/jest" exact strict component={TestWithJest}></Route>
+                    </Router>
 
-                    </div>
-                </Router>
+                </div>
             </Provider>
 
         );

@@ -18,10 +18,11 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: left;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 15px;
 }
 
 .App-link {
@@ -35,4 +36,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.single-article {
+  margin: 30px -20px 20px;
+  border: 0;
+  border-top: 1px solid #c9c7c7;
+  width: 100%;
 }
